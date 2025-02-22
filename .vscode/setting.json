@@ -1,8 +1,8 @@
 {
     "eslint.workingDirectories": [
-    {
-        "mode": "auto"
-    }
+        {
+            "mode": "auto"
+        }
     ],
     "eslint.validate": [
         "javascript",
@@ -12,5 +12,7 @@
     ],
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
-    }
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.jsxSortProps": true
 }
