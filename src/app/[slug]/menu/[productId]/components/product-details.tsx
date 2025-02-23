@@ -8,7 +8,8 @@ import { ChefHatIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from 'next/image';
 import { useContext, useState } from "react";
 import { CartContext } from "../../contexts/cart";
-import CartSheet from "./cart-sheet";
+import CartSheet from "../components/cart-sheet";
+
 
 
 interface ProductDetailsProps {
@@ -25,8 +26,10 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
-    const { toggleCart } = useContext(CartContext);
+    const { toggleCart, addProduct } = useContext(CartContext);
+
     const [quantity, setQuantity] = useState<number>(1);
+
     const handleDecreaseQuantity = () => {
         setQuantity((prev) => {
             if (prev === 1) {
@@ -40,9 +43,12 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     };
 
     const handleAddToCart = () => {
+        addProduct({
+            ...product,
+            quantity,
+        });
         toggleCart();
     };
-
     return (
         <>
             <div className="relative z-50 rounded-t-3xl p-5 mt-[-1.5rem] flex flex-auto flex-col overflow-hidden">
@@ -112,7 +118,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </div>
 
             <CartSheet />
-            
+
         </>
     );
 }
